@@ -2,6 +2,9 @@
 import { useState } from 'react';
 import FormularioObjetivo from './components/FormularioObjetivo';
 import ResultadoPlan from './components/ResultadoPlan';
+import Beneficios from './components/Beneficios';
+import ScrollRevealWrapper from './components/ScrollRevealWrapper';
+
 
 export default function Home() {
   const [respuesta, setRespuesta] = useState('');
@@ -42,8 +45,12 @@ export default function Home() {
           Tu guía inteligente para alcanzar objetivos personales, para lograr eso que tanto postergás para cumplir tus sueños... Sé el dueño de tu vida y de tus logros con el poder de la IA.
         </p>
       </section>
+      <ScrollRevealWrapper>
+      <Beneficios />
+      </ScrollRevealWrapper>
 
-      <section className="w-full max-w-2xl bg-white/10 backdrop-blur-xl p-8 rounded-3xl shadow-2xl border border-white/10 animate-fade-in">
+
+      <section className="w-full max-w-2xl bg-white/10 mt-24 backdrop-blur-xl p-8 rounded-3xl shadow-2xl border border-white/10 animate-fade-in">
         <FormularioObjetivo onSubmit={enviarPrompt} />
       </section>
 
