@@ -1,67 +1,32 @@
 'use client';
 import { motion } from 'framer-motion';
-import { Sparkles, CalendarDays, Star, BarChart3, CheckCircle, Smile } from 'lucide-react';
+import { CheckCircle, Flame, Target, Sparkles, Brain, CalendarCheck } from 'lucide-react';
 
 export default function PlanPersonalizado({ texto }) {
   return (
-    <section className="mt-24 max-w-4xl mx-auto px-6">
-      <motion.h2
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-        className="text-4xl font-bold text-center text-white mb-10"
-      >
-        ✨ Tu Plan Personalizado
-      </motion.h2>
-
+    <section className="mt-20 max-w-3xl mx-auto px-6">
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4 }}
-        className="bg-gradient-to-br from-slate-800 to-slate-900 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl text-white space-y-10"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="bg-white/10 border border-white/20 rounded-3xl p-8 shadow-xl backdrop-blur-md"
       >
-        {/* Parte generada por IA */}
-        <div className="text-base text-slate-300 whitespace-pre-wrap leading-relaxed border-l-4 border-emerald-400 pl-4 italic">
-          {texto}
+        <h2 className="text-3xl font-bold text-emerald-300 mb-6 text-center flex items-center justify-center gap-2">
+          <Sparkles className="w-6 h-6" /> Tu Plan Personalizado
+        </h2>
+
+        <div className="text-slate-200 space-y-6 leading-relaxed text-sm md:text-base whitespace-pre-wrap">
+          {texto.split('\n').map((line, index) => (
+            <p key={index} className="flex items-start gap-2">
+              <span>{line}</span>
+            </p>
+          ))}
         </div>
 
-        {/* Bloques visuales de pasos */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Paso icon={Sparkles} title="Motivación">
-            Escribí 3 razones que te impulsan a lograr tu objetivo. Mantenelas visibles todos los días.
-          </Paso>
-          <Paso icon={CalendarDays} title="Microacciones diarias">
-            Diseñá acciones pequeñas de lunes a viernes. Ej: 20 min de estudio, $500 ahorrados, 1 llamada clave.
-          </Paso>
-          <Paso icon={BarChart3} title="Seguimiento visual">
-            Usá Trello, Notion o ImpulsáTuVida para registrar lo que vas logrando.
-          </Paso>
-          <Paso icon={CheckCircle} title="Revisión semanal">
-            Cada domingo revisá tus avances. Ajustá lo que no funcione y planificá la próxima semana.
-          </Paso>
-          <Paso icon={Smile} title="Recompensas">
-            Celebrá tus logros con algo que disfrutes. Esto fortalece tu motivación.
-          </Paso>
-          <Paso icon={Star} title="Reflexión mensual">
-            Evaluá si tu estrategia funciona. Reforzá lo que sirve, cambiá lo que no.
-          </Paso>
+        <div className="mt-10 border-t border-white/20 pt-6 text-center text-emerald-200 text-sm italic">
+          Recordá: tu constancia diaria es lo que convierte los sueños en logros 🌱
         </div>
       </motion.div>
     </section>
   );
 }
-
-function Paso({ icon: Icon, title, children }) {
-  return (
-    <div className="flex items-start gap-4 p-4 bg-white/5 rounded-xl border border-white/10 hover:scale-[1.02] transition shadow-md">
-      <div className="mt-1">
-        <Icon className="w-6 h-6 text-emerald-400" />
-      </div>
-      <div>
-        <h3 className="font-semibold text-emerald-300 mb-1">{title}</h3>
-        <p className="text-slate-300 text-sm leading-relaxed">{children}</p>
-      </div>
-    </div>
-  );
-}
-

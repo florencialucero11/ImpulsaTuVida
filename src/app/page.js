@@ -14,28 +14,20 @@ export default function Home() {
   const [cargando, setCargando] = useState(false);
 
   const enviarPrompt = ({ objetivo, categoria }) => {
-    setCargando(true);
-    setRespuesta('');
+  setCargando(true);
+  setRespuesta('');
 
-    fetch('/api/ia', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-      prompt: `
-        Actuá como un coach motivacional experto. El usuario quiere mejorar en la siguiente categoría: "${categoria}". 
-        Su objetivo es: "${objetivo}".
+  fetch('/api/ia', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ objetivo, categoria })
+  })
+    .then(res => res.json())
+    .then(data => setRespuesta(data.result))
+    .catch(() => setRespuesta('Ocurrió un error.'))
+    .finally(() => setCargando(false));
+};
 
-        Generá un plan semanal personalizado de mejora dividido por días o etapas. Usá un tono cálido, claro y accionable. 
-        Incluir pasos concretos, motivación emocional y consejos sostenibles. Finalizá con una frase motivadora.
-        `
-
-      }),
-    })
-      .then(res => res.json())
-      .then(data => setRespuesta(data.result))
-      .catch(() => setRespuesta('Ocurrió un error.'))
-      .finally(() => setCargando(false));
-  };
 
   return (
    <main className="relative min-h-screen text-white px-6 py-10 flex flex-col items-center bg-slate-900 overflow-hidden">
