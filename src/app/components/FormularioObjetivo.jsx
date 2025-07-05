@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import SelectorCategoria from './SelectorCategoria';
 
 export default function FormularioObjetivo({ onSubmit }) {
   const [objetivo, setObjetivo] = useState('');
@@ -15,25 +16,7 @@ export default function FormularioObjetivo({ onSubmit }) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <div>
-        <label className="block text-slate-300 font-semibold mb-2">
-          🧭 Elegí una categoría
-        </label>
-        <select
-          value={categoria}
-          onChange={(e) => setCategoria(e.target.value)}
-          className="w-full p-4 rounded-xl border border-slate-300 shadow focus:outline-none focus:ring-2 focus:ring-cyan-600 text-slate-300"
-          required
-        >
-          <option value="">Seleccioná una categoría</option>
-          <option value="salud">Salud y bienestar</option>
-          <option value="productividad">Productividad personal</option>
-          <option value="emocional">Gestión emocional</option>
-          <option value="trabajo">Trabajo y carrera</option>
-          <option value="finanzas">Finanzas personales</option>
-          <option value="estudio">Hábitos de estudio</option>
-        </select>
-      </div>
+      <SelectorCategoria onSelect={setCategoria} />
 
       <div>
         <label className="block text-slate-300 font-semibold mb-2">
